@@ -5,7 +5,7 @@
 // let arc = require('@architect/functions')
 
 // TODO: modify the body object!
-let body = (path) => `
+let body = (req) => `
 <!doctype html>
 <html lang=en>
   <head>
@@ -19,7 +19,9 @@ let body = (path) => `
       Maybe this allows you to see possible improvements for your tests descriptions, go for it. Improve!
     </p>
     <p>
-      path: <pre>${path}</pre>
+      queryStringParameters: <pre>${req.queryStringParameters}</pre><br />
+      multiValueQueryStringParameters: <pre>${req.multiValueQueryStringParameters}</pre><br />
+      pathParameters: <pre>${req.pathParameters}</pre><br />
     </p>
 
   </body>
@@ -32,7 +34,7 @@ exports.handler = async function http(req) {
       'content-type': 'text/html; charset=utf8',
       'cache-control': 'no-cache, no-store, must-revalidate, max-age=0, s-maxage=0'
     },
-    body: body(req.path)
+    body: body(req)
   }
 };
 
