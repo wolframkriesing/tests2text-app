@@ -5,29 +5,26 @@
 // let arc = require('@architect/functions')
 
 // TODO: modify the body object!
-let body = `
+let body = (url) => `
 <!doctype html>
 <html lang=en>
   <head>
     <meta charset=utf-8>
-    <title>Hi!</title>
-    <link rel="stylesheet" href="https://static.begin.app/starter/default.css">
-    <link href="data:image/x-icon;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=" rel="icon" type="image/x-icon">
+    <title>tests2text</title>
   </head>
   <body>
-
-    <h1 class="center-text">
-      <!-- ↓ Change "Hello world!" to something else and head on back to Begin! -->
-      Hello world!
-    </h1>
-
-    <p class="center-text">
-      Your <a href="https://begin.com" class="link" target="_blank">Begin</a> app is ready to go!
+    <h1>Tests 2 Text</h1>
+    <p>
+      What does the code do? See the test descriptions, extracted from the given test file.
+      Maybe this allows you to see possible improvements for your tests descriptions, go for it. Improve!
+    </p>
+    <p>
+      url: ${url}
     </p>
 
   </body>
 </html>
-`
+`;
 
 exports.handler = async function http(req) {
   return {
@@ -35,9 +32,9 @@ exports.handler = async function http(req) {
       'content-type': 'text/html; charset=utf8',
       'cache-control': 'no-cache, no-store, must-revalidate, max-age=0, s-maxage=0'
     },
-    body
+    body: body(req.url)
   }
-}
+};
 
 // Example responses
 
