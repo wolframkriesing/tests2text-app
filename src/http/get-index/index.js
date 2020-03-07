@@ -19,7 +19,8 @@ let body = (req) => `
       Maybe this allows you to see possible improvements for your tests descriptions, go for it. Improve!
     </p>
     <p>
-      url: <code>${JSON.stringify(req, null, 4)}</code>
+      url: 
+      <pre>${JSON.stringify(req, null, 4)}</pre>
     </p>
 
   </body>
