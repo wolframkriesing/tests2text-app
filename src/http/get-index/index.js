@@ -19,9 +19,9 @@ let body = (req) => `
       Maybe this allows you to see possible improvements for your tests descriptions, go for it. Improve!
     </p>
     <p>
-      queryStringParameters: <pre>${req.queryStringParameters}</pre><br />
-      multiValueQueryStringParameters: <pre>${req.multiValueQueryStringParameters}</pre><br />
-      pathParameters: <pre>${req.pathParameters}</pre><br />
+      queryStringParameters: <pre>${JSON.stringify(req.queryStringParameters)}</pre><br />
+      multiValueQueryStringParameters: <pre>${JSON.stringify(req.multiValueQueryStringParameters)}</pre><br />
+      pathParameters: <pre>${JSON.stringify(req.pathParameters)}</pre><br />
     </p>
 
   </body>
