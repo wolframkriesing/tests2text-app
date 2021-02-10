@@ -5,11 +5,10 @@
 // let arc = require('@architect/functions')
 
 // TODO: modify the body object!
-let body = (req) => `
-<!doctype html>
-<html lang=en>
+let body = (req) => `<!doctype html>
+<html lang="en">
   <head>
-    <meta charset=utf-8>
+    <meta charset="utf-8">
     <title>tests2text</title>
   </head>
   <body>
