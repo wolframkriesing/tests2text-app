@@ -3,6 +3,7 @@ begin-app
 
 @http
 get /
+get /kata.txt
 
 @tables
 data

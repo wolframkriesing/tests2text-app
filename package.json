@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "description": "Begin basic Hello World! app for Node",
   "scripts": {
-    "start": "NODE_ENV=testing npx sandbox"
+    "start": "NODE_ENV=testing npx sandbox --verbose --port 5100"
   },
   "devDependencies": {
     "@architect/sandbox": "latest"

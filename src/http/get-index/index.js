@@ -4,8 +4,16 @@
 // Add secure sessions, middleware, and more: https://docs.begin.com/en/functions/http/
 // let arc = require('@architect/functions')
 
+const imports = require('esm')(module);
+const {extractTextFromFile} = imports('test-stitcher');
+
 // TODO: modify the body object!
-let body = (req) => `<!doctype html>
+const body = async (req) => {
+  const kataUrl = req.queryStringParameters?.kata ?? '';
+  const extracted = kataUrl ? await extractTextFromFile(kataUrl) : '';
+  return extracted;
+
+  return `<!doctype html>
 <html lang="en">
   <head>
     <meta charset="utf-8">
@@ -18,6 +26,8 @@ let body = (req) => `<!doctype html>
       Maybe this allows you to see possible improvements for your tests descriptions, go for it. Improve!
     </p>
     <p>
+      kataUrl: <pre>${kataUrl}</pre><br />
+      extracted: <pre>${JSON.stringify(extracted)}</pre><br />
       queryStringParameters: <pre>${JSON.stringify(req.queryStringParameters)}</pre><br />
       multiValueQueryStringParameters: <pre>${JSON.stringify(req.multiValueQueryStringParameters)}</pre><br />
       pathParameters: <pre>${JSON.stringify(req.pathParameters)}</pre><br />
@@ -26,14 +36,15 @@ let body = (req) => `<!doctype html>
   </body>
 </html>
 `;
+}
 
 exports.handler = async function http(req) {
   return {
     headers: {
-      'content-type': 'text/html; charset=utf8',
+      'content-type': 'application/json',
       'cache-control': 'no-cache, no-store, must-revalidate, max-age=0, s-maxage=0'
     },
-    body: body(req)
+    body: await body(req)
   }
 };
 
